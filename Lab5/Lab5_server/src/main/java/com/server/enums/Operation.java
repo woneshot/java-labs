@@ -1,0 +1,21 @@
+package com.server.enums;
+public enum Operation {
+    CREATE_GAME,
+    READ_GAME_DATA,
+    UPDATE_GAME,
+    DELETE_GAME,
+    CREATE_USER,
+    READ_USER,
+    UPDATE_USER,
+    DELETE_USER,
+    GET_ALL_DEVELOPERS,
+    GET_ALL_GAMES,
+    GET_ALL_USERS,
+    GET_ALL_ROLES,
+    GET_DEVELOPERS_BY_GAME,
+    JOIN_DEVELOPER_GAME,
+    SEPARATE_DEVELOPER_GAME,
+    LOGIN,
+    REGISTER,
+    DISCONNECT
+}
