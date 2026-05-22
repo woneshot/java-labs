@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Подключение к MySQL -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bugtracker?useSSL=false&amp;serverTimezone=UTC</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">Ishtar1181619</property>
+
+        <!-- Пул соединений -->
+        <property name="hibernate.connection.pool_size">10</property>
+
+        <!-- Вывод SQL в консоль -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- Проверка схемы -->
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+
+        <!-- Entity-классы -->
+        <mapping class="com.bugtracker.common.entity.Role"/>
+        <mapping class="com.bugtracker.common.entity.User"/>
+        <mapping class="com.bugtracker.common.entity.Project"/>
+        <mapping class="com.bugtracker.common.entity.ProjectMember"/>
+        <mapping class="com.bugtracker.common.entity.Task"/>
+        <mapping class="com.bugtracker.common.entity.Comment"/>
+        <mapping class="com.bugtracker.common.entity.TaskHistory"/>
+        <mapping class="com.bugtracker.common.entity.Tag"/>
+        <mapping class="com.bugtracker.common.entity.TaskTag"/>
+
+    </session-factory>
+</hibernate-configuration>

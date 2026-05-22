@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.bugtracker.client.ui.controller.MainController">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <top>
+        <HBox spacing="10">
+            <Label fx:id="currentUserLabel" text="Current user: unknown"/>
+            <Button text="Logout" onAction="#onLogoutClicked"/>
+        </HBox>
+    </top>
+
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Users">
+                    <content>
+                        <ScrollPane fitToWidth="true">
+                            <content>
+                                <VBox spacing="10">
+                                    <padding>
+                                        <Insets top="10" right="10" bottom="10" left="10"/>
+                                    </padding>
+
+                                    <Label text="Create user"/>
+                                    <GridPane hgap="8" vgap="8">
+                                        <columnConstraints>
+                                            <ColumnConstraints minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                            <ColumnConstraints minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                            <ColumnConstraints minWidth="90"/>
+                                        </columnConstraints>
+                                        <Label text="Username" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="userCreateUsernameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                        <Label text="Password" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                        <TextField fx:id="userCreatePasswordField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                                        <Label text="Email" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="userCreateEmailField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                        <Label text="Full name" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                                        <TextField fx:id="userCreateFullNameField" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+                                        <Label text="Role" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="userCreateRoleField" text="ADMIN" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                                        <Button text="CREATE_USER" onAction="#onCreateUserClicked" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+                                    </GridPane>
+
+                                    <Separator/>
+                                    <Label text="Update user"/>
+                                    <GridPane hgap="8" vgap="8">
+                                        <columnConstraints>
+                                            <ColumnConstraints minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                            <ColumnConstraints minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                        </columnConstraints>
+                                        <Label text="User ID" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="userUpdateIdField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                        <Label text="Email" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                        <TextField fx:id="userUpdateEmailField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                                        <Label text="Full name" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="userUpdateFullNameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                        <Label text="Role" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                                        <TextField fx:id="userUpdateRoleField" text="USER" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+                                        <Button text="UPDATE_USER" onAction="#onUpdateUserClicked" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+                                    </GridPane>
+
+                                    <Separator/>
+                                    <HBox spacing="8">
+                                        <Button text="GET_ALL_USERS" onAction="#onGetAllUsersClicked"/>
+                                        <Label text="ID:"/>
+                                        <TextField fx:id="userBlockIdField" promptText="User ID"/>
+                                        <Button text="BLOCK_USER" onAction="#onBlockUserClicked"/>
+                                        <Button text="UNBLOCK_USER" onAction="#onUnblockUserClicked"/>
+                                    </HBox>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                    </content>
+                </Tab>
+
+                <Tab text="Projects">
+                    <content>
+                        <ScrollPane fitToWidth="true">
+                            <content>
+                                <VBox spacing="10">
+                                    <padding>
+                                        <Insets top="10" right="10" bottom="10" left="10"/>
+                                    </padding>
+
+                                    <Label text="Create project"/>
+                                    <GridPane hgap="8" vgap="8">
+                                        <columnConstraints>
+                                            <ColumnConstraints minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                            <ColumnConstraints minWidth="110"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                            <ColumnConstraints minWidth="90"/>
+                                        </columnConstraints>
+                                        <Label text="Name" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="projectCreateNameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                        <Label text="Description" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                        <TextField fx:id="projectCreateDescriptionField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                                        <Label text="Owner ID" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="projectCreateOwnerIdField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                        <Button text="Use current user" onAction="#onUseCurrentUserAsOwnerClicked" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                                        <Button text="CREATE_PROJECT" onAction="#onCreateProjectClicked" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+                                    </GridPane>
+
+                                    <Separator/>
+                                    <Label text="Update project"/>
+                                    <GridPane hgap="8" vgap="8">
+                                        <columnConstraints>
+                                            <ColumnConstraints minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                            <ColumnConstraints minWidth="110"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                        </columnConstraints>
+                                        <Label text="Project ID" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="projectUpdateIdField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                        <Label text="Name" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                        <TextField fx:id="projectUpdateNameField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                                        <Label text="Description" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="projectUpdateDescriptionField" GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+                                        <Button text="UPDATE_PROJECT" onAction="#onUpdateProjectClicked" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+                                    </GridPane>
+
+                                    <Separator/>
+                                    <HBox spacing="8">
+                                        <Button text="GET_ALL_PROJECTS" onAction="#onGetAllProjectsClicked"/>
+                                        <Label text="User ID:"/>
+                                        <TextField fx:id="projectUserProjectsUserIdField" promptText="User ID"/>
+                                        <Button text="GET_USER_PROJECTS" onAction="#onGetUserProjectsClicked"/>
+                                    </HBox>
+
+                                    <Separator/>
+                                    <Label text="Project members"/>
+                                    <GridPane hgap="8" vgap="8">
+                                        <columnConstraints>
+                                            <ColumnConstraints minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                            <ColumnConstraints minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                        </columnConstraints>
+                                        <Label text="Project ID" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="projectMemberProjectIdField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                        <Label text="User ID" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                        <TextField fx:id="projectMemberUserIdField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                                        <Button text="ADD_PROJECT_MEMBER" onAction="#onAddProjectMemberClicked" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                        <Button text="REMOVE_PROJECT_MEMBER" onAction="#onRemoveProjectMemberClicked" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                        <Button text="GET_PROJECT_MEMBERS" onAction="#onGetProjectMembersClicked" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                                    </GridPane>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                    </content>
+                </Tab>
+
+                <Tab text="Tasks">
+                    <content>
+                        <ScrollPane fitToWidth="true">
+                            <content>
+                                <VBox spacing="10">
+                                    <padding>
+                                        <Insets top="10" right="10" bottom="10" left="10"/>
+                                    </padding>
+
+                                    <Label text="Create task"/>
+                                    <GridPane hgap="8" vgap="8">
+                                        <columnConstraints>
+                                            <ColumnConstraints minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                            <ColumnConstraints minWidth="110"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                            <ColumnConstraints minWidth="100"/>
+                                        </columnConstraints>
+                                        <Label text="Title" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="taskCreateTitleField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                        <Label text="Description" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                        <TextField fx:id="taskCreateDescriptionField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                                        <Label text="Project ID" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="taskCreateProjectIdField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                        <Label text="Creator ID" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                                        <TextField fx:id="taskCreateCreatorIdField" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+                                        <Button text="Use current user" onAction="#onUseCurrentUserAsCreatorClicked" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
+                                        <Label text="Assignee ID" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="taskCreateAssigneeIdField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                                        <Label text="Priority" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                                        <TextField fx:id="taskCreatePriorityField" text="MEDIUM" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+                                        <Label text="Type" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="taskCreateTypeField" text="TASK" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                                        <Label text="Deadline" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+                                        <TextField fx:id="taskCreateDeadlineField" promptText="yyyy-MM-dd or empty" GridPane.rowIndex="3" GridPane.columnIndex="3"/>
+                                        <Button text="CREATE_TASK" onAction="#onCreateTaskClicked" GridPane.rowIndex="3" GridPane.columnIndex="4"/>
+                                    </GridPane>
+
+                                    <Separator/>
+                                    <Label text="Update task"/>
+                                    <GridPane hgap="8" vgap="8">
+                                        <columnConstraints>
+                                            <ColumnConstraints minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                            <ColumnConstraints minWidth="110"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                        </columnConstraints>
+                                        <Label text="Task ID" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="taskUpdateIdField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                        <Label text="Title" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                        <TextField fx:id="taskUpdateTitleField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                                        <Label text="Description" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="taskUpdateDescriptionField" GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+                                        <Label text="Deadline" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="taskUpdateDeadlineField" promptText="yyyy-MM-dd or empty" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                                        <Button text="UPDATE_TASK" onAction="#onUpdateTaskClicked" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+                                    </GridPane>
+
+                                    <Separator/>
+                                    <Label text="Task actions"/>
+                                    <GridPane hgap="8" vgap="8">
+                                        <columnConstraints>
+                                            <ColumnConstraints minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                            <ColumnConstraints minWidth="110"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                            <ColumnConstraints minWidth="130"/>
+                                        </columnConstraints>
+                                        <Label text="Task ID" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="taskActionTaskIdField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                        <Label text="User ID" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                        <TextField fx:id="taskActionUserIdField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                                        <Button text="Use current user" onAction="#onUseCurrentUserAsTaskActionUserClicked" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+                                        <Label text="Status" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="taskActionStatusField" text="IN_PROGRESS" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                        <Button text="CHANGE_TASK_STATUS" onAction="#onChangeTaskStatusClicked" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                                        <Label text="Priority" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="taskActionPriorityField" text="HIGH" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                                        <Button text="CHANGE_TASK_PRIORITY" onAction="#onChangeTaskPriorityClicked" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                                        <Label text="Assignee ID" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="taskActionAssigneeIdField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                                        <Button text="ASSIGN_TASK" onAction="#onAssignTaskClicked" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+                                    </GridPane>
+
+                                    <Separator/>
+                                    <HBox spacing="8">
+                                        <Label text="Project ID:"/>
+                                        <TextField fx:id="taskQueryProjectIdField" promptText="Project ID"/>
+                                        <Button text="GET_PROJECT_TASKS" onAction="#onGetProjectTasksClicked"/>
+                                        <Label text="Keyword:"/>
+                                        <TextField fx:id="taskQueryKeywordField" promptText="Search keyword"/>
+                                        <Button text="SEARCH_TASKS" onAction="#onSearchTasksClicked"/>
+                                    </HBox>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                    </content>
+                </Tab>
+
+                <Tab text="Comments">
+                    <content>
+                        <ScrollPane fitToWidth="true">
+                            <content>
+                                <VBox spacing="10">
+                                    <padding>
+                                        <Insets top="10" right="10" bottom="10" left="10"/>
+                                    </padding>
+                                    <GridPane hgap="8" vgap="8">
+                                        <columnConstraints>
+                                            <ColumnConstraints minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                            <ColumnConstraints minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                            <ColumnConstraints minWidth="130"/>
+                                        </columnConstraints>
+                                        <Label text="Task ID" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="commentTaskIdField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                        <Label text="Author ID" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                        <TextField fx:id="commentAuthorIdField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                                        <Button text="Use current user" onAction="#onUseCurrentUserAsCommentAuthorClicked" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+                                        <Label text="Text" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                        <TextArea fx:id="commentTextArea" prefRowCount="4" GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.columnSpan="4"/>
+                                        <Button text="ADD_COMMENT" onAction="#onAddCommentClicked" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+                                        <Button text="GET_TASK_COMMENTS" onAction="#onGetTaskCommentsClicked" GridPane.rowIndex="2" GridPane.columnIndex="4"/>
+                                    </GridPane>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                    </content>
+                </Tab>
+
+                <Tab text="Tags">
+                    <content>
+                        <ScrollPane fitToWidth="true">
+                            <content>
+                                <VBox spacing="10">
+                                    <padding>
+                                        <Insets top="10" right="10" bottom="10" left="10"/>
+                                    </padding>
+                                    <GridPane hgap="8" vgap="8">
+                                        <columnConstraints>
+                                            <ColumnConstraints minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                            <ColumnConstraints minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                        </columnConstraints>
+                                        <Label text="Task ID" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="tagTaskIdField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                        <Label text="Tag ID" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                        <TextField fx:id="tagTagIdField" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                                        <Button text="ADD_TAG_TO_TASK" onAction="#onAddTagToTaskClicked" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                                        <Button text="REMOVE_TAG_FROM_TASK" onAction="#onRemoveTagFromTaskClicked" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                                        <Button text="GET_TASK_TAGS" onAction="#onGetTaskTagsClicked" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                                        <Button text="GET_ALL_TAGS" onAction="#onGetAllTagsClicked" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+                                    </GridPane>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                    </content>
+                </Tab>
+
+                <Tab text="History/Stats">
+                    <content>
+                        <ScrollPane fitToWidth="true">
+                            <content>
+                                <VBox spacing="10">
+                                    <padding>
+                                        <Insets top="10" right="10" bottom="10" left="10"/>
+                                    </padding>
+                                    <Label text="History"/>
+                                    <GridPane hgap="8" vgap="8">
+                                        <columnConstraints>
+                                            <ColumnConstraints minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                            <ColumnConstraints minWidth="180"/>
+                                        </columnConstraints>
+                                        <Label text="Task ID" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="historyTaskIdField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                        <Button text="GET_TASK_HISTORY" onAction="#onGetTaskHistoryClicked" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                    </GridPane>
+                                    <Separator/>
+                                    <Label text="Statistics"/>
+                                    <GridPane hgap="8" vgap="8">
+                                        <columnConstraints>
+                                            <ColumnConstraints minWidth="100"/>
+                                            <ColumnConstraints hgrow="ALWAYS"/>
+                                            <ColumnConstraints minWidth="210"/>
+                                        </columnConstraints>
+                                        <Label text="Project ID" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                                        <TextField fx:id="statsProjectIdField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                                        <Button text="GET_PROJECT_STATISTICS" onAction="#onGetProjectStatisticsClicked" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                                    </GridPane>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+
+    <bottom>
+        <VBox spacing="8">
+            <padding>
+                <Insets top="10" right="0" bottom="0" left="0"/>
+            </padding>
+            <Label text="Responses log"/>
+            <Button text="Clear log" onAction="#onClearLogClicked"/>
+            <TextArea fx:id="logArea" wrapText="true" prefRowCount="14"/>
+        </VBox>
+    </bottom>
+</BorderPane>
